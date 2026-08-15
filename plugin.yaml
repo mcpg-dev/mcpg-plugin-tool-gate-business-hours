@@ -1,0 +1,16 @@
+schema: mcpg.dev/plugin/v1
+id: dev.mcpg.tool-gate.business-hours
+name: Business Hours Gate
+license: Apache-2.0
+description: |
+  A pre-dispatch ToolGate that allows tool calls only inside operator-configured
+  weekly time windows, evaluated in a chosen IANA timezone. Calls outside every
+  window — or on a configured blackout date — are denied (403 / -32030 by
+  default) before the backend ever runs. Pure time logic, no I/O, fully offline.
+  Windows and the timezone DB are resolved once at load. Fails closed on bad
+  config (an unparseable timezone, an empty window list, or a malformed time
+  refuses to load).
+class: tool_gate
+runtime: native-cdylib-v1
+protocol_version: "1.0"
+required_capabilities: []
